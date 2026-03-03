@@ -15,7 +15,6 @@ export interface PersonalInfo {
   driversLicense: string;
   bio: string;
   avatar?: string;
-  resumeUrl?: string;
 }
 
 export interface SocialLink {
@@ -87,7 +86,6 @@ export const personalInfo: PersonalInfo = {
   birthDate: "26/09/2002",
   driversLicense: "Permis B",
   bio: "Étudiant passionné en BUT Informatique parcours AGED (Administration, Gestion et Exploitation des Données) à l'IUT de l'UPEC (Université Paris-Est Créteil). Fort d'expériences en DATA, administration de bases de données et exploitation de données, je recherche constamment de nouveaux défis techniques pour enrichir mes compétences.",
-  resumeUrl: "/assets/documents/CV_Adel_Achouche.pdf",
 };
 
 // ============================================
@@ -296,7 +294,6 @@ export const projects: Project[] = [
     featured: true,
     image: "/assets/images/projects/p1.jpg",
     githubUrl: "https://github.com/adel016/Medialise",
-    videoUrl: "/assets/videos/demo1_Medialise.mp4",
   },
   {
     id: "proj-5",

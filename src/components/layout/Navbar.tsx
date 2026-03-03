@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Download } from 'lucide-react';
-import { navItems, personalInfo } from '../../data/portfolio';
+import { Menu, X } from 'lucide-react';
+import { navItems } from '../../data/portfolio';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -57,17 +57,6 @@ export default function Navbar() {
 
           {/* Actions */}
           <div className="flex items-center gap-2">
-            {personalInfo.resumeUrl && (
-              <a
-                href={personalInfo.resumeUrl}
-                download="CV_Adel_Achouche.pdf"
-                className="hidden md:flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-primary-500 to-accent-500 rounded-xl hover:shadow-lg hover:shadow-primary-500/25 transition-all duration-300"
-              >
-                <Download size={16} />
-                CV
-              </a>
-            )}
-
             {/* Mobile menu button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -101,16 +90,6 @@ export default function Navbar() {
                   {item.label}
                 </a>
               ))}
-              {personalInfo.resumeUrl && (
-                <a
-                  href={personalInfo.resumeUrl}
-                  download="CV_Adel_Achouche.pdf"
-                  className="flex items-center gap-2 px-4 py-3 text-base font-medium text-white bg-gradient-to-r from-primary-500 to-accent-500 rounded-xl mt-2"
-                >
-                  <Download size={18} />
-                  Télécharger CV
-                </a>
-              )}
             </div>
           </motion.div>
         )}
