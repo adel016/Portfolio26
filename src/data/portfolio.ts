@@ -78,14 +78,14 @@ export interface Interest {
 export const personalInfo: PersonalInfo = {
   firstName: "Adel",
   lastName: "Achouche",
-  title: "Étudiant BUT3 Informatique",
-  subtitle: "Administration, Gestion et Exploitation des Données",
-  email: "achoucheadel1@gmail.com", // TODO: Remplace par ton vrai email
+  title: "Étudiant ingénieur admis à l'ESIEA",
+  subtitle: "Admis à l'ESIEA - Alternance disponible à partir de septembre 2026",
+  email: "adel.achouche@et.esiea.fr", // TODO: Remplace par ton vrai email
   phone: "06 XX XX XX XX", // TODO: Remplace par ton vrai numéro
   location: "Villejuif",
   birthDate: "26/09/2002",
   driversLicense: "Permis B",
-  bio: "Étudiant passionné en BUT Informatique parcours AGED (Administration, Gestion et Exploitation des Données) à l'IUT de l'UPEC (Université Paris-Est Créteil). Fort d'expériences en DATA, administration de bases de données et exploitation de données, je recherche constamment de nouveaux défis techniques pour enrichir mes compétences.",
+  bio: "Étudiant passionné en informatique, admis à l'ESIEA pour un cycle de 3 ans. Je suis à la recherche d'un contrat d'apprentissage de 3 ans afin de développer mes compétences en data, administration de bases de données et exploitation de données, tout en relevant de nouveaux défis techniques.",
 };
 
 // ============================================
@@ -105,7 +105,7 @@ export const socialLinks: SocialLink[] = [
   },
   {
     name: "Email",
-    url: "mailto:achoucheadel1@gmail.com", // TODO: Remplace par ton email
+    url: "mailto:adel.achouche@et.esiea.fr", // TODO: Remplace par ton email
     icon: "email",
   },
 ];
@@ -177,10 +177,10 @@ export const skillCategories: Record<Skill['category'], string> = {
 export const experiences: Experience[] = [
   {
     id: "exp-1",
-    title: "Entrepôt de données médicales et exploitation via IA.",
+    title: "Projet Medialise - Entrepôt de données médicales & IA sémantique",
     company: "IUT de l'UPEC (Université Paris-Est Créteil)", // TODO: Remplace par le nom de l'entreprise
     location: "Vitry sur Seine",
-    startDate: "Septembre 2026",
+    startDate: "Septembre 2025",
     endDate: "Mars 2026",
     description: [
       "Conception d’un entrepôt de données médicales visant à centraliser, structurer et valoriser des données issues de sources hétérogènes afin de garantir leur qualité et leur cohérence. Développement d’un prototype d’assistant intelligent exploitant la recherche sémantique pour faciliter l’accès à l’information et soutenir l’aide à la décision dans le domaine de la santé",
@@ -190,7 +190,7 @@ export const experiences: Experience[] = [
   },
   {
     id: "exp-2",
-    title: "Stage – Développement d’une solution de suivi informatique (Data & Système)",
+    title: "Stage Data & Systèmes - Gestion du parc informatique",
     company: "Institut Pasteur",
     location: "Alger (Algérie)",
     startDate: "Avril 2025",
@@ -205,7 +205,22 @@ export const experiences: Experience[] = [
   },
   {
     id: "exp-3",
-    title: "Extraction de données météo via API et dashboard de visualisation",
+    title: "Stage Data & BI - DGAC (plans de vol & dashboards)",
+    company: "DGAC (Direction Générale de l'Aviation Civile)",
+    location: "Athis-Mons, France",
+    startDate: "Avril 2026",
+    endDate: "Août 2026",
+    description: [
+      "Développement de parseurs Python pour l'extraction et le stockage PostgreSQL de plans de vol Eurocontrol (formats hétérogènes).",
+      "Conception et automatisation de pipelines de traitement de données avec Python et Power Query.",
+      "Création de tableaux de bord Power BI pour la visualisation et le suivi des flux de données aéronautiques.",
+    ],
+    technologies: ["Python (NumPy, Pandas, plotly)", "Power BI", "Power Query", "PSQL"],
+    type: "work",
+  },
+  {
+    id: "exp-4",
+    title: "Projet Data Météo - API Météo France & dashboard BI",
     company: "IUT de l'UPEC (Université Paris-Est Créteil)",
     location: "Vitry sur Seine",
     startDate: "Septembre 2022",
@@ -226,6 +241,17 @@ export const experiences: Experience[] = [
 export const education: Education[] = [
   {
     id: "edu-1",
+    degree: "Cycle ingénieur informatique",
+    school: "ESIEA",
+    location: "France",
+    startDate: "2026",
+    endDate: "2029",
+    specialization: "1re année généraliste (spécialisation à partir de la 2e année)",
+    description:
+      "Admission à l'ESIEA pour un cycle de 3 ans avec recherche d'un contrat d'apprentissage. La 1re année est généraliste et la spécialisation se fait à partir de la 2e année.",
+  },
+  {
+    id: "edu-2",
     degree: "BUT Informatique (3ème année)",
     school: "IUT de l'UPEC (Université Paris-Est Créteil)",
     location: "Vitry Sur Seine",
@@ -236,7 +262,7 @@ export const education: Education[] = [
       "Formation complète en informatique avec spécialisation en bases de données, administration système et exploitation de données. Compétences acquises en data, développement web, programmation, gestion de projet et DevOps.",
   },
   {
-    id: "edu-2",
+    id: "edu-3",
     degree: "Baccalauréat technologique (mention Bien)",
     school: "Lycée polyvalent de Cachan",
     location: "Cachan",
@@ -253,6 +279,40 @@ export const education: Education[] = [
 export const projects: Project[] = [
   {
     id: "proj-1",
+    title: "Stage Data & BI à la DGAC – Parseur de plans de vol & tableaux de bord",
+    description:
+      "Développement de parseurs Python pour extraire des plans de vol Eurocontrol, structuration des données dans PostgreSQL et création de dashboards Power BI pour le suivi opérationnel des flux aéronautiques.",
+    longDescription:
+      "Mise en place d'une chaîne complète de traitement de données: parsing de fichiers hétérogènes, normalisation et stockage PostgreSQL, puis restitution via des tableaux de bord Power BI. Travail orienté fiabilité des données, automatisation des traitements et restitution métier pour les équipes de la DGAC.",
+    technologies: ["Python", "PostgreSQL", "Power BI", "Power Query", "ETL"],
+    category: "data",
+    featured: true,
+    image: "/assets/images/projects/p2.jpg",
+    githubUrl: "https://github.com/adel016/SAE3.01",
+  },
+  {
+    id: "proj-3",
+    title: "Application de gestion de parc informatique",
+    description:
+      "Développement d’une application de gestion du parc informatique permettant de centraliser, structurer et suivre l’ensemble des équipements et ressources internes. Mise en place d’outils de suivi et d’administration afin d’optimiser la gestion des actifs, d’améliorer la traçabilité et de renforcer l’efficacité opérationnelle.",
+    technologies: ["PHP", "Laravel", "SQL", "Sécurité informatique", "Administration système"],
+    category: "web",
+    featured: false,
+    image: "/assets/images/projects/p2.png",
+  },
+  {
+    id: "proj-4",
+    title: "Medialise - Entrepôt de données médicales et IA sémantique",
+    description:
+      "Conception d’un entrepôt de données médicales visant à centraliser, structurer et valoriser des données issues de sources hétérogènes afin de garantir leur qualité et leur cohérence. Développement d’un prototype d’assistant intelligent exploitant la recherche sémantique pour faciliter l’accès à l’information et soutenir l’aide à la décision dans le domaine de la santé.",
+    technologies: ["Python", "Agno", "SQL", "MongoDB", "Docker", "Qdrant", "Neo4j", "GIT", "LLM"],
+    category: "data",
+    featured: true,
+    image: "/assets/images/projects/p1.jpg",
+    githubUrl: "https://github.com/adel016/Medialise",
+  },
+  {
+    id: "proj-6",
     title: "Plateforme Météo France",
     description:
       "Application web avec système d'authentification permettant aux utilisateurs de consulter des données météorologiques extraites et traitées depuis les APIs officielles de Météo France, avec un espace personnalisé par compte.",
@@ -275,27 +335,6 @@ export const projects: Project[] = [
     image: "/assets/images/projects/p5.png",
   },
   {
-    id: "proj-3",
-    title: "Application de gestions de parque informatique",
-    description:
-      "Développement d’une application de gestion du parc informatique permettant de centraliser, structurer et suivre l’ensemble des équipements et ressources internes. Mise en place d’outils de suivi et d’administration afin d’optimiser la gestion des actifs, d’améliorer la traçabilité et de renforcer l’efficacité opérationnelle.",
-    technologies: ["PHP", "Laravel", "SQL", "Sécurité informatique", "Administration système"],
-    category: "web",
-    featured: false,
-    image: "/assets/images/projects/p2.png",
-  },
-  {
-    id: "proj-4",
-    title: "Medialise - Entrepôt de données médicales et exploitation via IA.",
-    description:
-      "Conception d’un entrepôt de données médicales visant à centraliser, structurer et valoriser des données issues de sources hétérogènes afin de garantir leur qualité et leur cohérence. Développement d’un prototype d’assistant intelligent exploitant la recherche sémantique pour faciliter l’accès à l’information et soutenir l’aide à la décision dans le domaine de la santé.",
-    technologies: ["Python", "Agno", "SQL", "MongoDB", "Docker", "Qdrant", "Neo4j", "GIT", "LLM"],
-    category: "data",
-    featured: true,
-    image: "/assets/images/projects/p1.jpg",
-    githubUrl: "https://github.com/adel016/Medialise",
-  },
-  {
     id: "proj-5",
     title: "Dashboard Démographique France",
     description:
@@ -314,9 +353,9 @@ export const projects: Project[] = [
 export const interests: Interest[] = [
   { name: "Nouvelles technologies" },
   { name: "Intelligence artificielle" },
-  { name: "Data Science" },
-  { name: "Voyages" },
-  { name: "Sport" },
+  { name: "Randonnée" },
+  { name: "Voyage" },
+  { name: "Athlétisme" },
 ];
 
 // ============================================

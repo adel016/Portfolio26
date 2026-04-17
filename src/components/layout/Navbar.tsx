@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, Moon, SunMedium, X } from 'lucide-react';
 import { navItems } from '../../data/portfolio';
+import { useTheme } from '../../context/ThemeContext';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -26,7 +28,9 @@ export default function Navbar() {
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'glass-dark shadow-lg shadow-black/10'
+          ? theme === 'dark'
+            ? 'glass-dark shadow-lg shadow-black/10'
+            : 'bg-white/80 backdrop-blur-xl border-b border-surface-200 shadow-lg shadow-surface-200/40'
           : 'bg-transparent'
       }`}
     >
@@ -48,7 +52,11 @@ export default function Navbar() {
                 key={item.href}
                 href={item.href}
                 onClick={(e) => { e.preventDefault(); handleNavClick(item.href); }}
-                className="px-4 py-2 text-sm font-medium text-surface-700 dark:text-surface-200 hover:text-primary-500 dark:hover:text-primary-400 transition-colors rounded-lg hover:bg-surface-100 dark:hover:bg-white/5"
+                className={`px-4 py-2 text-sm font-medium transition-colors rounded-lg ${
+                  theme === 'dark'
+                    ? 'text-surface-200 hover:text-primary-400 hover:bg-white/5'
+                    : 'text-surface-950 hover:text-primary-600 hover:bg-surface-100'
+                }`}
               >
                 {item.label}
               </a>
@@ -57,10 +65,27 @@ export default function Navbar() {
 
           {/* Actions */}
           <div className="flex items-center gap-2">
+            <button
+              onClick={toggleTheme}
+              className={`p-2 rounded-xl transition-colors ${
+                theme === 'dark'
+                  ? 'text-surface-200 hover:bg-white/10'
+                  : 'text-surface-950 hover:bg-surface-100'
+              }`}
+              aria-label={theme === 'dark' ? 'Activer le mode clair' : 'Activer le mode sombre'}
+              title={theme === 'dark' ? 'Mode clair' : 'Mode sombre'}
+            >
+              {theme === 'dark' ? <SunMedium size={22} /> : <Moon size={22} />}
+            </button>
+
             {/* Mobile menu button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 rounded-xl text-surface-700 dark:text-surface-200 hover:bg-surface-100 dark:hover:bg-white/10 transition-colors"
+              className={`md:hidden p-2 rounded-xl transition-colors ${
+                theme === 'dark'
+                  ? 'text-surface-200 hover:bg-white/10'
+                  : 'text-surface-950 hover:bg-surface-100'
+              }`}
               aria-label="Menu"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -77,7 +102,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden glass-dark border-t border-white/10"
+            className={`md:hidden ${theme === 'dark' ? 'glass-dark border-t border-white/10' : 'bg-white/95 border-t border-surface-200 shadow-lg shadow-surface-200/30'}`}
           >
             <div className="px-4 py-4 space-y-1">
               {navItems.map((item) => (
@@ -85,7 +110,11 @@ export default function Navbar() {
                   key={item.href}
                   href={item.href}
                   onClick={(e) => { e.preventDefault(); handleNavClick(item.href); }}
-                  className="block px-4 py-3 text-base font-medium text-surface-200 hover:text-primary-400 hover:bg-white/5 rounded-xl transition-colors"
+                  className={`block px-4 py-3 text-base font-medium rounded-xl transition-colors ${
+                    theme === 'dark'
+                      ? 'text-surface-200 hover:text-primary-400 hover:bg-white/5'
+                      : 'text-surface-950 hover:text-primary-600 hover:bg-surface-100'
+                  }`}
                 >
                   {item.label}
                 </a>

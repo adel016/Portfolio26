@@ -5,6 +5,7 @@ import AnimatedSection from '../ui/AnimatedSection';
 import SectionTitle from '../ui/SectionTitle';
 import ProjectModal from '../ui/ProjectModal';
 import { projects, type Project } from '../../data/portfolio';
+import { useTheme } from '../../context/ThemeContext';
 
 const categoryLabels: Record<Project['category'], string> = {
   web: 'Web',
@@ -17,6 +18,7 @@ const categoryLabels: Record<Project['category'], string> = {
 const allCategories = [...new Set(projects.map((p) => p.category))];
 
 export default function Projects() {
+  const { theme } = useTheme();
   const [activeCategory, setActiveCategory] = useState<Project['category'] | 'all'>('all');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
@@ -25,7 +27,7 @@ export default function Projects() {
     : projects.filter((p) => p.category === activeCategory);
 
   return (
-    <section id="projects" className="py-24 bg-surface-50 dark:bg-surface-900">
+    <section id="projects" className={`py-24 ${theme === 'dark' ? 'bg-surface-50 dark:bg-surface-900' : 'bg-white'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
           <SectionTitle
@@ -43,7 +45,9 @@ export default function Projects() {
               className={`px-4 py-2 text-sm font-medium rounded-xl transition-all duration-300 ${
                 activeCategory === 'all'
                   ? 'bg-gradient-to-r from-primary-500 to-accent-500 text-white shadow-lg shadow-primary-500/25'
-                  : 'bg-white dark:bg-white/5 text-surface-700 dark:text-surface-200 border border-surface-200 dark:border-white/10 hover:border-primary-400 dark:hover:border-primary-400/30'
+                  : theme === 'dark'
+                    ? 'bg-white dark:bg-white/5 text-surface-700 dark:text-surface-200 border border-surface-200 dark:border-white/10 hover:border-primary-400 dark:hover:border-primary-400/30'
+                    : 'bg-surface-50 text-surface-950 border border-surface-200 hover:border-primary-400/40 shadow-sm shadow-surface-200/30'
               }`}
             >
               Tout
@@ -55,7 +59,9 @@ export default function Projects() {
                 className={`px-4 py-2 text-sm font-medium rounded-xl transition-all duration-300 ${
                   activeCategory === cat
                     ? 'bg-gradient-to-r from-primary-500 to-accent-500 text-white shadow-lg shadow-primary-500/25'
-                    : 'bg-white dark:bg-white/5 text-surface-700 dark:text-surface-200 border border-surface-200 dark:border-white/10 hover:border-primary-400 dark:hover:border-primary-400/30'
+                    : theme === 'dark'
+                      ? 'bg-white dark:bg-white/5 text-surface-700 dark:text-surface-200 border border-surface-200 dark:border-white/10 hover:border-primary-400 dark:hover:border-primary-400/30'
+                      : 'bg-surface-50 text-surface-950 border border-surface-200 hover:border-primary-400/40 shadow-sm shadow-surface-200/30'
                 }`}
               >
                 {categoryLabels[cat]}
@@ -76,7 +82,7 @@ export default function Projects() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
                 onClick={() => setSelectedProject(project)}
-                className="group relative flex flex-col rounded-2xl bg-white dark:bg-white/[0.03] border border-surface-200 dark:border-white/10 hover:border-primary-400/50 dark:hover:border-primary-400/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary-500/5 overflow-hidden cursor-pointer"
+                className={`group relative flex flex-col rounded-2xl border transition-all duration-300 hover:shadow-xl hover:shadow-primary-500/5 overflow-hidden cursor-pointer ${theme === 'dark' ? 'bg-white dark:bg-white/[0.03] border-surface-200 dark:border-white/10 hover:border-primary-400/50 dark:hover:border-primary-400/30' : 'bg-white border-surface-200 hover:border-primary-400/40 shadow-lg shadow-surface-200/30'}`}
               >
                 {/* Image / Placeholder */}
                 <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary-500/20 to-accent-500/20">
@@ -110,10 +116,10 @@ export default function Projects() {
 
                 {/* Content */}
                 <div className="flex flex-col flex-1 p-5">
-                  <h3 className="text-lg font-semibold text-surface-900 dark:text-white mb-2">
+                  <h3 className={`text-lg font-semibold mb-2 ${theme === 'dark' ? 'text-surface-900 dark:text-white' : 'text-surface-950'}`}>
                     {project.title}
                   </h3>
-                  <p className="text-sm text-surface-700 dark:text-surface-200 leading-relaxed mb-4 flex-1 line-clamp-3">
+                  <p className={`text-sm leading-relaxed mb-4 flex-1 line-clamp-3 ${theme === 'dark' ? 'text-surface-700 dark:text-surface-200' : 'text-surface-900'}`}>
                     {project.description}
                   </p>
 
@@ -122,7 +128,7 @@ export default function Projects() {
                     {project.technologies.slice(0, 4).map((tech) => (
                       <span
                         key={tech}
-                        className="px-2 py-0.5 text-xs font-medium rounded-md bg-surface-100 dark:bg-white/10 text-surface-700 dark:text-surface-200"
+                        className={`px-2 py-0.5 text-xs font-medium rounded-md ${theme === 'dark' ? 'bg-surface-100 dark:bg-white/10 text-surface-700 dark:text-surface-200' : 'bg-surface-100 text-surface-950 border border-surface-200'}`}
                       >
                         {tech}
                       </span>
@@ -135,14 +141,14 @@ export default function Projects() {
                   </div>
 
                   {/* Links */}
-                  <div className="flex items-center gap-3 pt-3 border-t border-surface-200 dark:border-white/10">
+                  <div className={`flex items-center gap-3 pt-3 border-t ${theme === 'dark' ? 'border-surface-200 dark:border-white/10' : 'border-surface-200'}`}>
                     {project.githubUrl && (
                       <a
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="flex items-center gap-1.5 text-sm font-medium text-surface-700 dark:text-surface-200 hover:text-primary-500 dark:hover:text-primary-400 transition-colors"
+                        className={`flex items-center gap-1.5 text-sm font-medium transition-colors ${theme === 'dark' ? 'text-surface-700 dark:text-surface-200 hover:text-primary-500 dark:hover:text-primary-400' : 'text-surface-950 hover:text-primary-600'}`}
                       >
                         <Github size={16} />
                         Code
@@ -154,7 +160,7 @@ export default function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="flex items-center gap-1.5 text-sm font-medium text-surface-700 dark:text-surface-200 hover:text-primary-500 dark:hover:text-primary-400 transition-colors"
+                        className={`flex items-center gap-1.5 text-sm font-medium transition-colors ${theme === 'dark' ? 'text-surface-700 dark:text-surface-200 hover:text-primary-500 dark:hover:text-primary-400' : 'text-surface-950 hover:text-primary-600'}`}
                       >
                         <ExternalLink size={16} />
                         Demo

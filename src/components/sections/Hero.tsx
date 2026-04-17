@@ -3,6 +3,7 @@ import { ChevronDown, MapPin, GraduationCap } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
 import { personalInfo, socialLinks } from '../../data/portfolio';
+import { useTheme } from '../../context/ThemeContext';
 
 const iconMap: Record<string, React.ReactNode> = {
   github: <FaGithub size={22} />,
@@ -11,6 +12,8 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 export default function Hero() {
+  const { theme } = useTheme();
+
   const scrollToAbout = () => {
     document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -18,13 +21,23 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-surface-950"
+      className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
+        theme === 'dark' ? 'bg-surface-950' : 'bg-surface-50'
+      }`}
     >
       {/* Background animated gradient */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-900/30 via-surface-950 to-accent-600/20 animate-gradient" />
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl animate-pulse-glow" />
-        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent-500/10 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: '1.5s' }} />
+        <div className={`absolute inset-0 animate-gradient ${
+          theme === 'dark'
+            ? 'bg-gradient-to-br from-primary-900/30 via-surface-950 to-accent-600/20'
+            : 'bg-gradient-to-br from-primary-100 via-white to-accent-100'
+        }`} />
+        <div className={`absolute top-1/4 -left-32 w-96 h-96 rounded-full blur-3xl animate-pulse-glow ${
+          theme === 'dark' ? 'bg-primary-500/10' : 'bg-primary-400/15'
+        }`} />
+        <div className={`absolute bottom-1/4 -right-32 w-96 h-96 rounded-full blur-3xl animate-pulse-glow ${
+          theme === 'dark' ? 'bg-accent-500/10' : 'bg-accent-400/15'
+        }`} style={{ animationDelay: '1.5s' }} />
       </div>
 
       {/* Grid pattern overlay */}
@@ -42,13 +55,17 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-primary-300 mb-8"
+          className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm mb-8 ${
+            theme === 'dark'
+              ? 'glass text-primary-300'
+              : 'bg-white/80 border border-surface-200 text-primary-700 shadow-lg shadow-surface-200/40'
+          }`}
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400" />
           </span>
-          Disponible pour un stage / alternance
+          Alternance disponible à partir de septembre 2026
         </motion.div>
 
         {/* Name */}
@@ -56,7 +73,9 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl sm:text-6xl lg:text-7xl font-black text-white leading-tight"
+          className={`text-4xl sm:text-6xl lg:text-7xl font-black leading-tight ${
+            theme === 'dark' ? 'text-white' : 'text-surface-950'
+          }`}
         >
           {personalInfo.firstName}{' '}
           <span className="gradient-text">{personalInfo.lastName}</span>
@@ -67,7 +86,9 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-6 text-xl sm:text-2xl text-surface-200 font-light"
+          className={`mt-6 text-xl sm:text-2xl font-light ${
+            theme === 'dark' ? 'text-surface-200' : 'text-surface-700'
+          }`}
         >
           {personalInfo.title}
         </motion.p>
@@ -77,7 +98,9 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-3 flex flex-wrap items-center justify-center gap-4 text-surface-200"
+          className={`mt-3 flex flex-wrap items-center justify-center gap-4 ${
+            theme === 'dark' ? 'text-surface-200' : 'text-surface-700'
+          }`}
         >
           <span className="inline-flex items-center gap-1.5 text-sm">
             <GraduationCap size={16} className="text-primary-400" />
@@ -102,7 +125,11 @@ export default function Hero() {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 rounded-2xl glass text-surface-200 hover:text-primary-400 hover:border-primary-400/30 transition-all duration-300 hover:scale-110"
+              className={`p-3 rounded-2xl transition-all duration-300 hover:scale-110 ${
+                theme === 'dark'
+                  ? 'glass text-surface-200 hover:text-primary-400 hover:border-primary-400/30'
+                  : 'bg-white border border-surface-200 text-surface-950 hover:text-primary-600 hover:border-primary-400/40 shadow-lg shadow-surface-200/40'
+              }`}
               aria-label={link.name}
             >
               {iconMap[link.icon] || null}
@@ -127,7 +154,11 @@ export default function Hero() {
           <a
             href="#contact"
             onClick={(e) => { e.preventDefault(); document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }); }}
-            className="px-8 py-3.5 text-sm font-semibold text-surface-200 glass rounded-2xl hover:text-white hover:border-primary-400/30 transition-all duration-300 hover:scale-105"
+            className={`px-8 py-3.5 text-sm font-semibold rounded-2xl transition-all duration-300 hover:scale-105 ${
+              theme === 'dark'
+                ? 'text-surface-200 glass hover:text-white hover:border-primary-400/30'
+                : 'text-surface-700 bg-white/80 border border-surface-200 hover:text-surface-950 hover:border-primary-400/40 shadow-lg shadow-surface-200/40'
+            }`}
           >
             Me contacter
           </a>
@@ -140,7 +171,9 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 0.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-surface-200 hover:text-primary-400 transition-colors cursor-pointer"
+        className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-colors cursor-pointer ${
+          theme === 'dark' ? 'text-surface-200 hover:text-primary-400' : 'text-surface-700 hover:text-primary-600'
+        }`}
         aria-label="Scroll down"
       >
         <motion.div
