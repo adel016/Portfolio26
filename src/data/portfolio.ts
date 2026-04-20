@@ -279,20 +279,19 @@ export const education: Education[] = [
 export const projects: Project[] = [
   {
     id: "proj-1",
-    title: "Stage Data & BI à la DGAC – Parseur de plans de vol & tableaux de bord",
+    title: "Stage Data Analyst à la DGAC – Parseur de plans de vol & tableaux de bord",
     description:
-      "Développement de parseurs Python pour extraire des plans de vol Eurocontrol, structuration des données dans PostgreSQL et création de dashboards Power BI pour le suivi opérationnel des flux aéronautiques.",
+      "Développement de parseurs Python pour extraire des données EUROCONTROL, analyse des retards ATFM et des performances ACC, et création de visualisations pour le suivi opérationnel des flux de navigation aérienne.",
     longDescription:
-      "Mise en place d'une chaîne complète de traitement de données: parsing de fichiers hétérogènes, normalisation et stockage PostgreSQL, puis restitution via des tableaux de bord Power BI. Travail orienté fiabilité des données, automatisation des traitements et restitution métier pour les équipes de la DGAC.",
+      "Au sein de la Direction des Services de la Navigation Aérienne (DSNA), mise en place d'une chaîne complète de traitement de données open source : cartographie des sources disponibles (EUROCONTROL PRU, OPDI, OpenSky), parsing de fichiers hétérogènes (CSV, Excel, Parquet), analyse des causes de régulation ATFM (capacité, staffing, météo, militaire, grève) et des KPI RP3, et restitution via des tableaux de bord à destination des équipes internes. Travail orienté fiabilité des données, automatisation des traitements et visualisation métier.",
     technologies: ["Python", "PostgreSQL", "Power BI", "Power Query", "ETL"],
     category: "data",
     featured: true,
     image: "/assets/images/projects/p2.jpg",
-    githubUrl: "https://github.com/adel016/SAE3.01",
   },
   {
     id: "proj-3",
-    title: "Application de gestion de parc informatique",
+    title: "Stage - Application de gestion de parc informatique",
     description:
       "Développement d’une application de gestion du parc informatique permettant de centraliser, structurer et suivre l’ensemble des équipements et ressources internes. Mise en place d’outils de suivi et d’administration afin d’optimiser la gestion des actifs, d’améliorer la traçabilité et de renforcer l’efficacité opérationnelle.",
     technologies: ["PHP", "Laravel", "SQL", "Sécurité informatique", "Administration système"],
