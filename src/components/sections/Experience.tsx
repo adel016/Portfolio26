@@ -212,7 +212,7 @@ export default function Experience() {
                 <div className="p-2 rounded-xl bg-accent-500/10 text-accent-500">
                   <GraduationCap size={24} />
                 </div>
-                <h3 className="text-2xl font-bold text-surface-900 dark:text-white">
+                <h3 className={`text-2xl font-bold ${theme === 'dark' ? 'text-surface-900 dark:text-white' : 'text-surface-950'}`}>
                   Formation
                 </h3>
               </div>
